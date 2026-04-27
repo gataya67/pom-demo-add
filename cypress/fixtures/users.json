@@ -1,0 +1,14 @@
+{
+  "validUser": {
+    "username": "test",
+    "password": "123"
+  },
+  "invalidUser": {
+    "username": "baduser",
+    "password": "wrongpass"
+  },
+  "messages": {
+    "invalidLogin": "Invalid username or password",
+    "cartError": "Unable to add item to cart"
+  }
+}
