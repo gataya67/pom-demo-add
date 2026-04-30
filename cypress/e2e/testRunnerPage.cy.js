@@ -120,18 +120,91 @@ describe("Test Runner Page", () => {
     });
 
     cy.visit("/");
+    cy.screenshot("pom-invalidLogin-step-1", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="username"]').clear().type("baduser");
+    cy.screenshot("pom-invalidLogin-step-2", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="password"]').clear().type("wrongpass");
+    cy.screenshot("pom-invalidLogin-step-3", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="login-button"]').click();
+    cy.screenshot("pom-invalidLogin-step-4", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="login-error"]').should(
+      "contain.text",
+      "Invalid username or password"
+    );
+    cy.screenshot("pom-invalidLogin-step-5", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.visit("/");
+    cy.screenshot("pom-addToCartFailure-step-1", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="username"]').clear().type("test");
+    cy.get('[data-cy="password"]').clear().type("123");
+    cy.get('[data-cy="login-button"]').click();
+    cy.screenshot("pom-addToCartFailure-step-2", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.intercept("POST", "/api/cart", {
+      statusCode: 500,
+      body: { success: false },
+    }).as("addToCartFailure");
+
+    cy.get('[data-cy="add-laptop"]').click();
+    cy.wait("@addToCartFailure");
+    cy.screenshot("pom-addToCartFailure-step-3", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="cart-error"]').should(
+      "contain.text",
+      "Unable to add item to cart"
+    );
+    cy.screenshot("pom-addToCartFailure-step-4", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.get('[data-cy="cart-error"]').should("be.visible");
+    cy.screenshot("pom-addToCartFailure-step-5", {
+      capture: "viewport",
+      overwrite: true,
+    });
+
+    cy.visit("/");
     TestRunnerPage.open();
     TestRunnerPage.verifyPageLoaded();
 
-    TestRunnerPage.expandPomGroup();
-    TestRunnerPage.selectAllPomTests();
-
+    cy.get('[data-cy="pom-smokeTest"]').check();
     cy.get('[data-cy="run-selected-tests"]').click();
+
     cy.get('[data-cy="command-pom-smokeTest-step-1"]').click();
 
     cy.get('[data-cy="captured-step-image"]')
       .should("be.visible")
       .and("have.attr", "src")
-      .and("include", "/tempScreenshots/steps/pom-smokeTest-step-1.png");
+      .and("include", "/tempScreenshots/pom-smokeTest-step-1.png");
   });
 });
