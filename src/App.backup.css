@@ -1,0 +1,136 @@
+.app-page,
+.runner-page {
+  min-height: 100vh;
+  background: #111827;
+  color: #f9fafb;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+.app-card {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+}
+
+.app-input {
+  padding: 10px;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+}
+
+.primary-button {
+  padding: 10px 14px;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background: #6b7280;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-text {
+  color: #f87171;
+  font-weight: bold;
+}
+
+.runner-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.runner-top-grid {
+  max-width: 900px;
+  margin: 0 auto 24px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.runner-results-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.runner-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.runner-card h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.checkbox-row,
+.save-row {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.test-list {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.selected-tests-list {
+  min-height: 90px;
+  line-height: 1.7;
+  color: #bfdbfe;
+  margin-bottom: 12px;
+}
+
+.result-row,
+.command-row {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 10px;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background: #111827;
+  color: #e5e7eb;
+  text-align: left;
+  cursor: pointer;
+}
+
+.command-row {
+  display: block;
+}
+
+.result-row.selected,
+.command-row.selected {
+  outline: 2px solid #60a5fa;
+}
+
+.pass-icon {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.captured-image {
+  width: 100%;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+}
